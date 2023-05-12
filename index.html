@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="index.css">
+ 
+    <title>Réservation d'un hotel </title>
+    <script>
+        function valider(){
+  nom = document.getElementById("name").value;
+  email = document.getElementById("email").value;
+  cin = document.getElementById("CIN").value;
+  age = document.getElementById("age").value;
+  nb = document.getElementById("nbr_personne").value;
+  gammeChambre = document.getElementById("Gamme_chambre").value;
+  dateArrivee = new Date(document.getElementById("date_arr").value);
+  dateDepart = new Date(document.getElementById("date_depart").value);
+
+  var isValid = true; // Add a variable to track input validity
+
+  if (nom == "") {
+    document.getElementById("erreurNom").innerHTML = "Nom est obligatoire.<br>";
+    isValid = false; // Set isValid to false if validation fails
+  } else {
+    document.getElementById("erreurNom").innerHTML = "";
+  }
+
+  if (email == "") {
+    document.getElementById("errEmail").innerHTML = "Email est obligatoire.<br>";
+    event.preventDefault();
+    isValid = false;
+  } else {
+    document.getElementById("errEmail").innerHTML = "";
+  }
+
+  if (cin == "") {
+    document.getElementById("errCin").innerHTML = "CIN est obligatoire";
+    event.preventDefault();
+    isValid = false;
+  } else {
+    document.getElementById("errCin").innerHTML = "";
+  }
+
+  if (age < 18 && age != "") {
+    document.getElementById("errAge").innerHTML = "Vous devez être majeur pour effectuer une réservation";
+    event.preventDefault();
+    isValid = false;
+  } else if (age == "") {
+    document.getElementById("errAge").innerHTML = "Age est obligatoire ";
+    event.preventDefault();
+    isValid = false;
+  } else {
+    document.getElementById("errAge").innerHTML = "";
+  }
+
+  if (nb == "") {
+    document.getElementById("errNb").innerHTML = "Nombre de personnes est obligatoire";
+    event.preventDefault();
+    isValid = false;
+  } else if (nb < 1 || nb > 3) {
+    document.getElementById("errNb").innerHTML = "Le nombre de personnes doit être compris entre 1 et 3";
+    event.preventDefault();
+    isValid = false;
+  } else {
+    document.getElementById("errNb").innerHTML = "";
+  }
+
+  if (dateDepart < dateArrivee) {
+    document.getElementById("errDateA").innerHTML = "La date de départ ne peut pas précéder la date d'arrivée.<br>";
+    event.preventDefault();
+    isValid = false;
+  } else {
+    document.getElementById("errDateA").innerHTML = "";
+    event.preventDefault();
+  }
+
+  const dateA = document.getElementById("date_arr").value;
+  const dateD = document.getElementById("date_depart").value;
+
+  if (
+    isValid && // Only display confirmation if input is valid
+    nom != "" &&
+    email != "" &&
+    cin != "" &&
+    age != "" &&
+    nb != "" &&
+    gammeChambre != "" &&
+    dateArrivee != "" &&
+    dateDepart != ""
+  ) {
+    document.getElementById("errNom");
+   
+
+                    document.getElementById('errNom');
+                    document.getElementById("formulaire").style.display = "none";
+          
+                    var messages = document.createElement("div");
+                    messages.id = "messages";
+                    messages.classList.add("reservation-info"); // Add CSS class to messages element
+
+                    // Récupération des données valides
+                    var name1 = document.getElementById("name").value;
+                    var CIN1 = document.getElementById("CIN").value;
+                    var email1 = document.getElementById("email").value;
+                    var age1 = document.getElementById("age").value;
+                    var nbr_personne1 = document.getElementById("nbr_personne").value;
+                    var date_arr1 = document.getElementById("date_arr").value;
+                    var date_depart1= document.getElementById("date_depart").value;
+                    var Gamme_chambre1 = document.getElementsByName("Gamme_chambre")[0].value;
+                    // Affichage du message de confirmation
+                         messages.appendChild(formulaire);
+           
+                messages.innerHTML = "<h2><div>	Reservation effectuee &#9989; </h2></div><br>"+
+                "<h3><div> <i>Information sur votre réservation </i></h3></div>" +
+                "<br> <p>Réservation au nom de : " + name1 + "</p>" +
+                "<p>Date de votre arrivée le : " + date_arr1 + "</p>"+
+                     "<p>Date prevu le: " + date_depart1 + "</p>" +
+                     "<p>Nombre de personnes : " + nbr_personne1 + "</p>"+
+                     "<h3><div>Gamme de chambre : " + Gamme_chambre1 + "</h3><br>" +
+                     "<p><span> Nous vous souhaitons un excellent sejour! </span> </p>";
+                                 document.body.appendChild(messages);
+ 
+        document.getElementById("messages").style.display = "block";
+          
+        
+        }}</script>
+       
+</head>
+<body>
+        <div id="formulaire">
+        <div class="section">
+        <div class="container">
+        <div class="row full-height justify-content-center">
+        <div class="col-12 text-center align-self-center py-5">
+        <div class="section pb-5 pt-5 pt-sm-2 text-center">
+            <label for="reg-log"></label>
+                <div class="card-3d-wrap mx-auto">
+                    <div class="card-3d-wrapper">
+                    <div class="card-front">
+                    <div class="center-wrap">
+                    <div class="section text-center">
+     <h4  class="mb-4 pb-3">Réservation d'un hotel</h4>
+              <form>                                          
+        
+                    <label for="name">Votre nom :</label>
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" class="form-style"  placeholder="Nom" autocomplete="off" required="required" oninvalid="this.setCustomValidity('Entez le nom')"  required>
+                            <i class="input-icon  uil uil-user"></i>
+                            <div class="mb-0 mt-4 text-center"><a href="#0" class="link" id="erreurNom"></a> </div>
+                        </div>
+                    <label for="email">Votre email :</label>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-style" placeholder="Email" id="email" autocomplete="off"  required="" oninvalid="this.setCustomValidity('Entez email')"  required>
+                            <i class="input-icon uil uil-at"></i>
+                            <div class="mb-0 mt-4 text-center"><a href="#0" class="link" id="errEmail"></a></div>
+                        </div>	    
+
+                    <label for="CIN"> Numéro CIN :</label>
+                        <div class="form-group">
+                            <input type="text" id="CIN" name="CIN" class="form-style" placeholder="CIN"  autocomplete="off"  required="" oninvalid="this.setCustomValidity('Entez le CIN')" required>                                     
+                            <i class="input-icon uil-card-atm"></i>
+                            <div class="mb-0 mt-4 text-center"><a href="#0" class="link" id="errCin"></a></div>
+                        </div>
+                                
+                    <label for="age"> Votre Âge :</label>
+                        <div class="form-group">
+                            <input type="number" id="age" name="age"  class="form-style" placeholder="Age" autocomplete="off"  required="" oninvalid="this.setCustomValidity('Entrez age')"  required>
+                            <i class="input-icon uil-chat-bubble-user"></i>
+                            <div class="mb-0 mt-4 text-center"><a href="#0" class="link" id="errAge"></a></div>
+                        </div>
+
+                    <label for="nbr_personne">Nombre de personnes :</label>
+                        <div class="form-group">
+                            <input type="number" id="nbr_personne" name="nbr_personne" class="form-style" placeholder="Nombre de personnes" autocomplete="off"  required="" oninvalid="this.setCustomValidity('Entrer le nombre de personnes')"  required>
+                            <i class="input-icon uil-clipboard-notes"></i>
+                            <div class="mb-0 mt-4 text-center"><a href="#0" class="link" id="errNb"></a> </div>
+                        </div>
+                    <label for="Gamme_chambre">Gamme de chambre :</label>
+                        <div class="form-group">
+                            <select id="Gamme_chambre" name="Gamme_chambre"  class="form-style" autocomplete="off"  required="" oninvalid="this.setCustomValidity('Choisissez un choix')" required>
+                            <option value="">-- Standard--</option>
+                            <option value="Standard">Standard</option>
+                            <option value="Confort">Confort</option>
+                            <option value="Deluxe">Deluxe</option>
+                            </select>
+                            <i class="input-icon uil-bed"></i>
+                        </div> <br>  
+                                                                 
+                                                                    
+                    <label for="date_arr">Date d'arrivée :</label>
+                        <div class="form-group">
+                            <input type="date" id="date_arr" name="date_arr" class="form-style" autocomplete="off"  required="" oninvalid="this.setCustomValidity('tEntez la date d arivee')"  required>
+                            <i class="input-icon uil-calendar-alt"></i>
+                        </div><br> 
+                                                    
+                    <label for="date_depart">Date de départ :</label>
+                        <div class="form-group">
+                            <input type="date" id="date_depart" name="date_depart" class="form-style" autocomplete="off"  required="" oninvalid="this.setCustomValidity('Entrez la date depart')"  required>                                        
+                            <i class="input-icon uil-calendar-alt"></i></div>
+                            <div class="mb-0 mt-4 text-center"><a href="#0" class="link" id="errDateA"></a>
+                        </div>
+
+
+
+
+
+                        <input  onclick="valider();" class="btn mt-4" type="submit" value="Reserver">
+                                                                        
+                               </form>
+                                                                        
+       </div></div> 
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+             </div> </div></div>
+         <div id="messages" ></div>
+            
+     
+  
+</body>
+</html>
